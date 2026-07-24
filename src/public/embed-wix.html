@@ -487,7 +487,7 @@ a{ color: inherit; text-decoration: none; }
 .whatsapp-wrap{
   position: fixed;
   left: 1.2rem;
-  bottom: max(1.2rem, env(safe-area-inset-bottom, 0px) + .8rem);
+  bottom: max(3rem, env(safe-area-inset-bottom, 0px) + 2.5rem);
   z-index: 95;
   display: flex;
   align-items: center;
@@ -520,7 +520,7 @@ a{ color: inherit; text-decoration: none; }
 .whatsapp-float:hover{ background: #1ebe5b; transform: scale(1.08); }
 
 @media (max-width: 480px){
-  .whatsapp-wrap{ left: .9rem; bottom: max(.9rem, env(safe-area-inset-bottom, 0px) + .6rem); }
+  .whatsapp-wrap{ left: .9rem; bottom: max(2.2rem, env(safe-area-inset-bottom, 0px) + 1.8rem); }
   .whatsapp-float{ width: 48px; height: 48px; }
   .whatsapp-float svg{ width: 26px; height: 26px; }
   .whatsapp-bubble{ font-size: .74rem; padding: .4rem .7rem; }
