@@ -423,6 +423,20 @@ a{ color: inherit; text-decoration: none; }
   color: var(--teal);
 }
 .trust__item span{ font-size: .92rem; color: #eaf1f5; }
+.trust p{ color: #eaf1f5; }
+
+.pilares-grid{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.4rem;
+  margin-top: 2rem;
+}
+.pilares-subtitle{ margin-top: 3rem; }
+.pilares-normativa{ margin-top: 1.5rem; }
+
+@media (max-width: 760px){
+  .pilares-grid{ grid-template-columns: 1fr; }
+}
 
 /* ---------- Address card (Contacto) ---------- */
 .address-card{ margin-top: 1.5rem; }
@@ -628,8 +642,8 @@ a{ color: inherit; text-decoration: none; }
     <div class="split__text">
       <span class="eyebrow">Nosotros</span>
       <h2>Servicios Profesionales</h2>
-      <p>En Clínica Hacienda Metamorfosis entendemos que las conductas de dependencia y el abuso de sustancias no son una ausencia de voluntad, sino la manifestación somática de desequilibrios afectivos crónicos, traumas o trastornos emocionales no resueltos.</p>
-      <p>Ofrecemos un entorno residencial privado, seguro y de excelencia clínica, diseñado con infraestructura de primer nivel para abordar el problema desde su origen, protegiendo la integridad del usuario y guiando a su núcleo familiar hacia una recuperación duradera.</p>
+      <p>En Clínica Hacienda Metamorfosis comprendemos que las conductas de dependencia y los desequilibrios en la salud mental no responden a una falta de voluntad, sino a procesos emocionales, vivencias de trauma o factores biopsicosociales complejos que requieren atención especializada.</p>
+      <p>Ofrecemos un modelo de atención residencial privado, ético y estructurado, respaldado por un equipo multidisciplinario de salud. Nuestras instalaciones brindan un entorno seguro, confidencial y de contención humana, diseñado para abordar el bienestar de la persona desde su origen, resguardando su dignidad en todo momento y brindando orientación continua a la familia durante todo el proceso de recuperación.</p>
     </div>
   </div>
 </section>
@@ -698,6 +712,52 @@ a{ color: inherit; text-decoration: none; }
         </div>
         <h3>Reconstrucción de Valores <span>(Espíritu)</span></h3>
         <p>Reconstruimos el sentido de la vida mediante la meditación guiada, la introspección y la oración activa diaria. Nuestras instalaciones cuentan con una capilla institucional dedicada al recogimiento personal, promoviendo un despertar espiritual libre de dogmas que le permita al usuario reencontrar la paz interior y fortalecer su estructura moral para su correcta reinserción social.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Pilares del Programa -->
+<section class="section trust" id="pilares">
+  <div class="container">
+    <span class="eyebrow eyebrow--light">Nuestro Modelo</span>
+    <h2>Pilares de Nuestro Programa</h2>
+
+    <div class="trust__items pilares-grid">
+      <div class="trust__item">
+        <strong>Evaluación Inicial Multidisciplinaria</strong>
+        <span>Valoración médica, psicológica y clínica previa para estructurar un plan de atención adecuado a cada caso.</span>
+      </div>
+      <div class="trust__item">
+        <strong>Atención Integral Continuada</strong>
+        <span>Acompañamiento médico general, seguimiento de signos vitales y monitoreo de la salud física.</span>
+      </div>
+      <div class="trust__item">
+        <strong>Intervención Psicológica</strong>
+        <span>Terapias individuales, sesiones grupales, orientación emocional y talleres psicoeducativos.</span>
+      </div>
+      <div class="trust__item">
+        <strong>Prevención de Recaídas</strong>
+        <span>Herramientas cognitivo-conductuales para la identificación de factores de riesgo y el desarrollo de estrategias de afrontamiento a largo plazo.</span>
+      </div>
+      <div class="trust__item">
+        <strong>Desarrollo Personal y Físico</strong>
+        <span>Actividades de integración, terapia física y dinámicas de convivencia para fomentar hábitos de vida saludables.</span>
+      </div>
+    </div>
+
+    <h2 class="pilares-subtitle">Compromiso de Calidad y Marco Normativo</h2>
+    <p>Nuestros procesos de atención y el modelo residencial se rigen bajo principios estrictos de ética, confidencialidad, respeto a la dignidad humana y voluntariedad, en alineación con las disposiciones sanitarias y la normatividad vigente:</p>
+
+    <div class="trust__items pilares-normativa">
+      <div class="trust__item">
+        <span>Norma Oficial Mexicana NOM-028-SSA2-2009 (Para la prevención, tratamiento y control de las adicciones).</span>
+      </div>
+      <div class="trust__item">
+        <span>Lineamientos emitidos por CONASAMA y regulación sanitaria de COFEPRIS.</span>
+      </div>
+      <div class="trust__item">
+        <span>Respeto al Consentimiento Informado y a los derechos de las personas usuarias.</span>
       </div>
     </div>
   </div>
