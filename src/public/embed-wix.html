@@ -478,6 +478,17 @@ a{ color: inherit; text-decoration: none; }
 }
 .footer__nav a:hover, .footer__legal a:hover{ color: var(--teal); }
 .footer__legal{ display: flex; flex-direction: column; gap: .6rem; }
+.footer__legal button{
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  text-align: left;
+  color: #cfe1ea;
+  font-size: .92rem;
+}
+.footer__legal button:hover{ color: var(--teal); }
 .footer__bottom{
   text-align: center;
   padding: 1.4rem 0;
@@ -527,6 +538,65 @@ a{ color: inherit; text-decoration: none; }
   .whatsapp-float svg{ width: 26px; height: 26px; }
   .whatsapp-bubble{ font-size: .74rem; padding: .4rem .7rem; }
 }
+
+/* ---------- Modal (Aviso de Privacidad) ---------- */
+.modal-overlay{
+  position: fixed;
+  inset: 0;
+  background: rgba(0,20,35,.6);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 200;
+  padding: 1.5rem;
+}
+.modal-overlay.open{ display: flex; }
+.modal-box{
+  background: var(--white);
+  border-radius: var(--radius);
+  max-width: 720px;
+  width: 100%;
+  max-height: 85vh;
+  overflow-y: auto;
+  padding: 2.2rem;
+  position: relative;
+  box-shadow: 0 20px 60px rgba(0,0,0,.3);
+}
+.modal-box h2{ font-size: 1.15rem; margin-top: 1.6rem; }
+.modal-box h2:first-of-type{ margin-top: 0; }
+.modal-box p{ font-size: .95rem; }
+.modal-eyebrow{
+  display: block;
+  color: var(--teal);
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: .78rem;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  margin-bottom: .5em;
+}
+.modal-updated{
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+  font-size: .85rem;
+  text-align: left;
+}
+.modal-close{
+  position: absolute;
+  top: 1rem; right: 1rem;
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  border: none;
+  background: var(--gray-bg);
+  color: var(--ink);
+  font-size: 1.2rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.modal-close:hover{ background: var(--teal); color: var(--white); }
 
 /* ---------- Back to top ---------- */
 .back-to-top{
@@ -866,7 +936,7 @@ a{ color: inherit; text-decoration: none; }
 
     <div class="footer__legal">
       <h4>Legal</h4>
-      <a href="https://heidernarvaez01.wixstudio.com/my-site-2/politica-de-privacidad" target="_top">Aviso de Privacidad</a>
+      <button type="button" id="openPrivacyModal">Aviso de Privacidad</button>
     </div>
   </div>
   <div class="footer__bottom">
@@ -882,6 +952,36 @@ a{ color: inherit; text-decoration: none; }
 </div>
 
 <a href="#inicio" class="back-to-top" id="backToTop" aria-label="Volver arriba">↑</a>
+
+<div class="modal-overlay" id="privacyModal">
+  <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="privacyModalTitle">
+    <button type="button" class="modal-close" id="closePrivacyModal" aria-label="Cerrar">✕</button>
+    <span class="modal-eyebrow">Aviso de Privacidad Integral</span>
+    <h2 id="privacyModalTitle" style="margin-top:0;">Clínica Hacienda Metamorfosis</h2>
+
+    <p>Clínica Hacienda Metamorfosis, con domicilio en Apaseo el Grande, Guanajuato, México, es responsable del tratamiento, uso y protección de sus datos personales y datos personales sensibles, en cumplimiento con la Ley Federal de Protección de Datos Personales en Posesión de los Particulares (LFPDPPP), su Reglamento, la NOM-004-SSA3-2012 (Del expediente clínico) y la NOM-028-SSA2-2009 (Para la prevención, tratamiento y control de las adicciones).</p>
+
+    <h2>1. Datos Personales que se Recaban</h2>
+    <p>Para cumplir con las finalidades descritas en el presente Aviso de Privacidad, recabamos datos personales de identificación y contacto como su nombre completo, edad, fecha de nacimiento, sexo, estado civil, domicilio particular, teléfono de contacto, correo electrónico, así como los datos de identificación y contacto de su familiar responsable o tutor legal. Asimismo, recabamos datos personales sensibles referentes a su salud y estado físico y mental, incluyendo antecedentes médicos, psicológicos y psiquiátricos, historial de consumo de sustancias y tratamientos previos, resultados de valoraciones clínicas, diagnósticos, signos vitales, pruebas de laboratorio o toxicológicas, y los datos contenidos dentro del Expediente Clínico de la persona usuaria. Finalmente, recabamos datos financieros o patrimoniales para la gestión de pagos y emisión de comprobantes fiscales como el RFC y datos de facturación.</p>
+
+    <h2>2. Finalidades del Tratamiento de los Datos</h2>
+    <p>Sus datos personales serán utilizados para finalidades primarias necesarias para la prestación del servicio, las cuales incluyen la integración, elaboración y resguardo del Expediente Clínico conforme a la NOM-004-SSA3-2012, la valoración médica, psicológica y clínica inicial para el diseño del plan de atención residencial personalizado, la ejecución de las actividades terapéuticas, médicas, psicológicas y de rehabilitación del modelo "CUERPO LIMPIO, MENTE SANA", el monitoreo del estado de salud física y emocional, el contacto de emergencia con familiares o representantes legales autorizados, y la gestión administrativa, facturación y cobro de los servicios prestados. Adicionalmente, sus datos podrán utilizarse para finalidades secundarias opcionales como el envío de información sobre actividades de seguimiento pos-tratamiento o red de egresados y encuestas de evaluación de calidad del servicio. Si no desea que sus datos se utilicen para finalidades secundarias, puede manifestarlo enviando un correo electrónico a la dirección oficial de contacto de la clínica.</p>
+
+    <h2>3. Transferencia de Datos Personales</h2>
+    <p>Clínica Hacienda Metamorfosis no transferirá sus datos personales ni sensibles a terceros sin su consentimiento previo, salvo las excepciones previstas en el artículo 37 de la LFPDPPP y por requerimiento de ley. Dichas excepciones incluyen a autoridades sanitarias y judiciales como COFEPRIS, CONASAMA, la Secretaría de Salud o autoridades competentes cuando exista un requerimiento legal formal o mandato judicial, laboratorios clínicos únicamente para la realización de estudios diagnósticos o toxicológicos necesarios para su atención médica, y personal e instituciones hospitalarias externas en caso de requerirse atención médica de emergencia no disponible en el establecimiento.</p>
+
+    <h2>4. Derechos ARCO (Acceso, Rectificación, Cancelación y Oposición)</h2>
+    <p>Usted o su representante legal tienen derecho a conocer qué datos personales tenemos de usted, para qué los utilizamos y las condiciones del uso que les damos (Acceso). Asimismo, es su derecho solicitar la corrección de su información en caso de que esté desactualizada, sea inexacta o incompleta (Rectificación); que la eliminemos de nuestras bases de datos cuando considere que la misma no está siendo utilizada adecuadamente (Cancelación); así como oponerse al uso de sus datos para fines específicos (Oposición). Por disposición de la NOM-004-SSA3-2012, los expedientes clínicos son propiedad de la institución y deben conservarse por un periodo mínimo de 5 años contados a partir de la fecha del último acto médico, por lo que la cancelación u oposición de ciertos datos clínicos estará sujeta a los límites previstos por la legislación sanitaria aplicable. Para ejercer cualquiera de sus derechos ARCO, deberá enviar una solicitud por escrito al correo electrónico oficial de contacto de la clínica o presentarla directamente en nuestras instalaciones.</p>
+
+    <h2>5. Uso de Cookies y Tecnologías en nuestro Sitio Web</h2>
+    <p>Le informamos que en nuestro sitio web utilizamos cookies, web beacons y otras tecnologías de rastreo a través de las cuales es posible analizar el tráfico web, brindar una mejor experiencia de navegación y optimizar nuestras campañas informativas en plataformas digitales. Los datos que se obtienen de estas tecnologías no contienen datos personales sensibles y pueden deshabilitarse directamente en la configuración de su navegador web.</p>
+
+    <h2>6. Cambios al Aviso de Privacidad</h2>
+    <p>El presente Aviso de Privacidad puede sufrir modificaciones, cambios o actualizaciones derivadas de nuevos requerimientos legales, de nuestras propias necesidades por los servicios que ofrecemos o de nuestras prácticas de privacidad. Cualquier modificación al presente aviso estará disponible para su consulta en nuestro sitio web oficial o directamente en el área administrativa de la clínica.</p>
+
+    <p class="modal-updated">Fecha de última actualización: Julio de 2026.</p>
+  </div>
+</div>
 
 <script>
 // Menú móvil
@@ -945,6 +1045,24 @@ track.addEventListener('touchend', (e) => {
 }, { passive: true });
 
 updateCarousel();
+
+// Modal Aviso de Privacidad
+const privacyModal = document.getElementById('privacyModal');
+const openPrivacyModal = document.getElementById('openPrivacyModal');
+const closePrivacyModal = document.getElementById('closePrivacyModal');
+
+openPrivacyModal.addEventListener('click', () => {
+  privacyModal.classList.add('open');
+});
+closePrivacyModal.addEventListener('click', () => {
+  privacyModal.classList.remove('open');
+});
+privacyModal.addEventListener('click', (e) => {
+  if (e.target === privacyModal) privacyModal.classList.remove('open');
+});
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') privacyModal.classList.remove('open');
+});
 </script>
 </body>
 </html>
