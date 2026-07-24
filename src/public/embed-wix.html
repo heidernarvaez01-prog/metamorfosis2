@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Clínica Hacienda Metamorfosis</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* =========================================================
+   Clínica Hacienda Metamorfosis — Landing Page
+   Paleta extraída de "Paleta de Colores.png" y del logo:
+   Navy #004878 · Azul acero #497592 · Teal #0EA5D0 · Gris #F4F4F4
+   ========================================================= */
+
+:root{
+  --navy: #003a63;
+  --navy-2: #004878;
+  --steel: #497592;
+  --steel-light: #6b93ac;
+  --teal: #0ea5d0;
+  --gray-bg: #f4f4f4;
+  --white: #ffffff;
+  --ink: #1e2a33;
+  --ink-soft: #4a5a66;
+  --border: #e2e6e9;
+
+  --font-head: 'Poppins', sans-serif;
+  --font-body: 'Source Sans 3', sans-serif;
+
+  --container: 1180px;
+  --radius: 14px;
+  --shadow: 0 10px 30px rgba(0, 58, 99, 0.10);
+}
+
+*, *::before, *::after{ box-sizing: border-box; }
+
+html{ scroll-behavior: smooth; }
+
+body{
+  margin: 0;
+  font-family: var(--font-body);
+  color: var(--ink);
+  background: var(--white);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3{
+  font-family: var(--font-head);
+  color: var(--navy-2);
+  margin: 0 0 .5em;
+  line-height: 1.2;
+}
+
+h2{ font-size: clamp(1.6rem, 2.4vw, 2.3rem); font-weight: 700; }
+h3{ font-size: 1.15rem; font-weight: 600; }
+
+p{ margin: 0 0 1em; color: var(--ink-soft); }
+
+img{ max-width: 100%; display: block; }
+
+a{ color: inherit; text-decoration: none; }
+
+.container{
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.eyebrow{
+  display: inline-block;
+  font-family: var(--font-head);
+  font-size: .78rem;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--teal);
+  margin-bottom: .6em;
+}
+.eyebrow--light{ color: #bfe6f3; }
+
+/* ---------- Buttons ---------- */
+.btn{
+  display: inline-block;
+  font-family: var(--font-head);
+  font-weight: 600;
+  font-size: .95rem;
+  padding: .85em 1.9em;
+  border-radius: 999px;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
+}
+.btn--primary{
+  background: var(--navy-2);
+  color: var(--white);
+}
+.btn--primary:hover{ background: var(--navy); transform: translateY(-2px); box-shadow: var(--shadow); }
+.btn--accent{
+  background: var(--teal);
+  color: var(--white);
+}
+.btn--accent:hover{ background: #0c8db3; transform: translateY(-2px); box-shadow: 0 10px 30px rgba(14,165,208,.35); }
+
+/* ---------- Topbar ---------- */
+.topbar{
+  background: var(--navy);
+  color: #dfeef5;
+  font-size: .82rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  padding: .5rem 1rem;
+  text-align: center;
+  flex-wrap: wrap;
+}
+.topbar p{ margin: 0; color: #dfeef5; }
+
+/* ---------- Header ---------- */
+.header{
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255,255,255,.96);
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid var(--border);
+}
+.header__inner{
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: .6rem 24px;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+.brand{
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+  margin-right: auto;
+}
+.brand__logo{
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.brand__text{
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: .92rem;
+  color: var(--navy-2);
+  line-height: 1.15;
+}
+.nav{
+  display: flex;
+  gap: 1.6rem;
+}
+.nav a{
+  font-family: var(--font-head);
+  font-size: .92rem;
+  font-weight: 500;
+  color: var(--ink);
+  position: relative;
+  padding: .3rem 0;
+}
+.nav a::after{
+  content: '';
+  position: absolute;
+  left: 0; bottom: 0;
+  height: 2px; width: 0;
+  background: var(--teal);
+  transition: width .2s ease;
+}
+.nav a:hover::after{ width: 100%; }
+.header__cta{ padding: .65em 1.6em; font-size: .88rem; }
+
+.menu-toggle{
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 34px; height: 34px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+.menu-toggle span{
+  height: 2px; width: 100%;
+  background: var(--navy-2);
+  border-radius: 2px;
+}
+
+/* ---------- Hero ---------- */
+.hero{
+  position: relative;
+  min-height: 88vh;
+  display: flex;
+  align-items: center;
+  background: linear-gradient(rgba(0,26,48,.55), rgba(0,45,78,.72)), url('https://static.wixstatic.com/media/a5089d_b009b3295fa44f02ba6ebbd85bfc74a7~mv2.jpeg') center/cover no-repeat;
+  color: var(--white);
+}
+.hero__overlay{
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(0,58,99,.15) 0%, rgba(0,30,54,.75) 100%);
+}
+.hero__content{
+  position: relative;
+  z-index: 1;
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 0 24px;
+  text-align: center;
+}
+.hero h1{
+  color: var(--white);
+  font-size: clamp(2rem, 4.6vw, 3.1rem);
+  font-weight: 800;
+  margin-bottom: .5em;
+}
+.hero__lead{
+  color: #eaf6fb;
+  font-size: 1.15rem;
+  font-weight: 600;
+  margin-bottom: .4em;
+}
+.hero__sub{
+  color: #d3e7f0;
+  font-size: 1.02rem;
+  max-width: 620px;
+  margin: 0 auto 1.8em;
+}
+
+/* ---------- Sections ---------- */
+.section{ padding: 5.5rem 0; }
+.section--muted{ background: var(--gray-bg); }
+.section__lead{ max-width: 720px; font-size: 1.05rem; }
+
+.split{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3.5rem;
+  align-items: center;
+}
+.split--reverse .split__text{ order: 1; }
+.split--reverse .split__media{ order: 2; }
+.split__media img{
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  aspect-ratio: 4/3;
+}
+.split__media--card img{ aspect-ratio: 3/4; }
+
+/* ---------- Cards (Servicios) ---------- */
+.cards{
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.6rem;
+  margin-top: 2.5rem;
+}
+.card{
+  background: var(--white);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: 0 6px 18px rgba(0,58,99,.06);
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.card:hover{ transform: translateY(-6px); box-shadow: var(--shadow); }
+.card__media{
+  aspect-ratio: 4/3;
+  overflow: hidden;
+}
+.card__media img{ width: 100%; height: 100%; object-fit: cover; }
+.card h3, .card p{ padding: 0 1.3rem; }
+.card h3{ margin-top: 1.1rem; color: var(--navy-2); }
+.card p{ font-size: .92rem; padding-bottom: 1.4rem; }
+
+.card--highlight{
+  background: var(--steel);
+  color: var(--white);
+}
+.card--highlight h3{ color: var(--white); }
+.card--highlight p{ color: #eaf1f5; }
+
+/* ---------- Pillars (Modelo Clínico) ---------- */
+.pillars{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2.2rem;
+  margin-top: 3rem;
+}
+.pillar{
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-top: 4px solid var(--teal);
+  border-radius: var(--radius);
+  padding: 2rem 1.7rem;
+}
+.pillar__icon{
+  width: 52px; height: 52px;
+  margin-bottom: 1.1rem;
+  color: var(--navy-2);
+}
+.pillar__icon svg{
+  width: 100%; height: 100%;
+  fill: none;
+  stroke: var(--navy-2);
+  stroke-width: 1.6;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+.pillar h3 span{
+  display: block;
+  font-size: .8rem;
+  font-weight: 500;
+  color: var(--steel);
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin-top: .15em;
+}
+.pillar p{ font-size: .93rem; }
+
+/* ---------- Gallery (Instalaciones) ---------- */
+.gallery{
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 200px;
+  gap: 1rem;
+  margin-top: 2.5rem;
+}
+.gallery__item{
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: 0 6px 18px rgba(0,58,99,.08);
+}
+.gallery__item img{
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform .35s ease;
+}
+.gallery__item:hover img{ transform: scale(1.06); }
+.gallery__item--wide{ grid-column: span 2; }
+
+/* ---------- Trust / Garantía ---------- */
+.trust{
+  background: linear-gradient(120deg, var(--navy) 0%, var(--steel) 100%);
+  color: var(--white);
+}
+.trust h2{ color: var(--white); max-width: 640px; }
+.trust__inner{
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+.trust__items{
+  display: grid;
+  gap: 1.4rem;
+}
+.trust__item{
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.18);
+  border-radius: var(--radius);
+  padding: 1.1rem 1.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: .2rem;
+}
+.trust__item strong{
+  font-family: var(--font-head);
+  font-size: 1.05rem;
+  color: var(--teal);
+}
+.trust__item span{ font-size: .92rem; color: #eaf1f5; }
+
+/* ---------- Form ---------- */
+.form{ margin-top: 1.5rem; }
+.form__row{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+.form__field{ margin-bottom: 1rem; }
+.form__field label{
+  display: block;
+  font-family: var(--font-head);
+  font-size: .85rem;
+  font-weight: 600;
+  color: var(--navy-2);
+  margin-bottom: .35rem;
+}
+.form__field input,
+.form__field textarea{
+  width: 100%;
+  padding: .7em .9em;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-family: var(--font-body);
+  font-size: .95rem;
+  background: var(--gray-bg);
+  color: var(--ink);
+  transition: border-color .18s ease, background .18s ease;
+}
+.form__field input:focus,
+.form__field textarea:focus{
+  outline: none;
+  border-color: var(--teal);
+  background: var(--white);
+}
+.form__success{
+  margin-top: 1rem;
+  color: var(--steel);
+  font-weight: 600;
+  font-size: .92rem;
+}
+
+/* ---------- Footer ---------- */
+.footer{
+  background: var(--navy);
+  color: #cfe1ea;
+  padding-top: 3.5rem;
+}
+.footer__inner{
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1.3fr 1fr;
+  gap: 2.5rem;
+  padding-bottom: 2.5rem;
+  border-bottom: 1px solid rgba(255,255,255,.12);
+}
+.footer__logo{
+  width: 56px; height: 56px;
+  border-radius: 50%;
+  margin-bottom: .8rem;
+}
+.footer h4{
+  font-family: var(--font-head);
+  color: var(--white);
+  font-size: .92rem;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+.footer p{ color: #b9d1dd; font-size: .9rem; }
+.footer__nav{ display: flex; flex-direction: column; gap: .6rem; }
+.footer__nav a, .footer__legal a{
+  color: #cfe1ea;
+  font-size: .92rem;
+}
+.footer__nav a:hover, .footer__legal a:hover{ color: var(--teal); }
+.footer__legal{ display: flex; flex-direction: column; gap: .6rem; }
+.footer__bottom{
+  text-align: center;
+  padding: 1.4rem 0;
+  font-size: .82rem;
+  color: #93b2c1;
+}
+
+/* ---------- WhatsApp flotante ---------- */
+.whatsapp-float{
+  position: fixed;
+  left: 1.5rem;
+  bottom: 1.5rem;
+  width: 56px; height: 56px;
+  border-radius: 50%;
+  background: #25d366;
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow);
+  z-index: 95;
+  transition: transform .2s ease, background .2s ease;
+}
+.whatsapp-float svg{ width: 30px; height: 30px; }
+.whatsapp-float:hover{ background: #1ebe5b; transform: scale(1.08); }
+
+/* ---------- Back to top ---------- */
+.back-to-top{
+  position: fixed;
+  right: 1.5rem;
+  bottom: 1.5rem;
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  background: var(--navy-2);
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  box-shadow: var(--shadow);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: all .25s ease;
+  z-index: 90;
+}
+.back-to-top.visible{ opacity: 1; visibility: visible; transform: translateY(0); }
+.back-to-top:hover{ background: var(--teal); }
+
+/* =========================================================
+   Responsive
+   ========================================================= */
+@media (max-width: 980px){
+  .cards{ grid-template-columns: repeat(2, 1fr); }
+  .pillars{ grid-template-columns: 1fr; }
+  .trust__inner{ grid-template-columns: 1fr; }
+  .footer__inner{ grid-template-columns: 1fr 1fr; }
+  .gallery{ grid-template-columns: repeat(2, 1fr); grid-auto-rows: 180px; }
+  .gallery__item--wide{ grid-column: span 2; }
+}
+
+@media (max-width: 760px){
+  .nav, .header__cta{ display: none; }
+  .menu-toggle{ display: flex; }
+  .header.nav-open .header__inner{
+    flex-wrap: wrap;
+  }
+  .header.nav-open .nav{
+    display: flex;
+    order: 3;
+    width: 100%;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1.25rem 0 .5rem;
+    border-top: 1px solid var(--border);
+    margin-top: .6rem;
+  }
+  .header.nav-open .header__cta{
+    display: inline-block;
+    order: 4;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 1.25rem;
+  }
+  .split{ grid-template-columns: 1fr; }
+  .split--reverse .split__text{ order: 2; }
+  .split--reverse .split__media{ order: 1; }
+  .cards{ grid-template-columns: 1fr; }
+  .form__row{ grid-template-columns: 1fr; }
+  .footer__inner{ grid-template-columns: 1fr; }
+  .topbar{ font-size: .75rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- Barra superior -->
+<div class="topbar">
+  <p>Atención confidencial las 24 horas · Clínica autorizada y certificada en el Estado de Guanajuato</p>
+</div>
+
+<!-- Header / Navegación -->
+<header class="header" id="header">
+  <div class="header__inner">
+    <a href="#inicio" class="brand">
+      <img src="https://static.wixstatic.com/media/a5089d_81248d043fa54625b45e295389122dd2~mv2.jpeg" alt="Clínica Hacienda Metamorfosis" class="brand__logo">
+      <span class="brand__text">Clínica Hacienda<br>Metamorfosis</span>
+    </a>
+
+    <nav class="nav" id="nav">
+      <a href="#nosotros">Nosotros</a>
+      <a href="#servicios">Servicios</a>
+      <a href="#modelo-clinico">Modelo Clínico</a>
+      <a href="#instalaciones">Instalaciones</a>
+    </nav>
+
+    <a href="#contacto" class="btn btn--primary header__cta">Contáctanos</a>
+
+    <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- Hero -->
+<section class="hero" id="inicio">
+  <div class="hero__overlay"></div>
+  <div class="hero__content">
+    <span class="eyebrow eyebrow--light">Centro de Rehabilitación en Adicciones</span>
+    <h1>Centro Especializado en Salud Mental y Restauración Integral</h1>
+    <p class="hero__lead">Clínica autorizada y certificada con permisos vigentes en todo el Estado de Guanajuato.</p>
+    <p class="hero__sub">Más de 20 años de trayectoria profesional devolviendo el equilibrio, la paz y la estabilidad a las familias.</p>
+    <a href="#servicios" class="btn btn--accent">Conoce Nuestros Servicios</a>
+  </div>
+</section>
+
+<!-- Nosotros -->
+<section class="section" id="nosotros">
+  <div class="container split">
+    <div class="split__media">
+      <img src="https://static.wixstatic.com/media/a5089d_fdb7def75f004a789b38f2565ebcf063~mv2.jpeg" alt="Instalaciones de Clínica Hacienda Metamorfosis" loading="lazy">
+    </div>
+    <div class="split__text">
+      <span class="eyebrow">Nosotros</span>
+      <h2>Servicios Profesionales</h2>
+      <p>En Clínica Hacienda Metamorfosis entendemos que las conductas de dependencia y el abuso de sustancias no son una ausencia de voluntad, sino la manifestación somática de desequilibrios afectivos crónicos, traumas o trastornos emocionales no resueltos.</p>
+      <p>Ofrecemos un entorno residencial privado, seguro y de excelencia clínica, diseñado con infraestructura de primer nivel para abordar el problema desde su origen, protegiendo la integridad del usuario y guiando a su núcleo familiar hacia una recuperación duradera.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Servicios -->
+<section class="section section--muted" id="servicios">
+  <div class="container">
+    <span class="eyebrow">Servicios</span>
+    <h2>Especialistas en Salud Emocional y Trastornos Conductuales</h2>
+
+    <div class="cards">
+      <article class="card">
+        <div class="card__media"><img src="https://static.wixstatic.com/media/a5089d_937fe77a9e964b7c9538d05a55ea285f~mv2.jpeg" alt="Dependencias Químicas" loading="lazy"></div>
+        <h3>Dependencias Químicas</h3>
+        <p>Abordaje residencial especializado enfocado en la desintoxicación biológica y rehabilitación integral de Alcoholismo, Drogadicción y Farmacodependencia o el abuso crónico de medicamentos controlados.</p>
+      </article>
+
+      <article class="card card--highlight">
+        <div class="card__media"><img src="https://static.wixstatic.com/media/a5089d_917502cc5b6f4ed29f81e37cac8ccc63~mv2.jpeg" alt="Trastornos Afectivos Concomitantes" loading="lazy"></div>
+        <h3>Trastornos Afectivos Concomitantes</h3>
+        <p>Estabilización médica y contención clínica avanzada para cuadros de Ansiedad Generalizada, Depresión Mayor Crónica y la reestructuración sistémica de dinámicas de Codependencia Familiar.</p>
+      </article>
+
+      <article class="card">
+        <div class="card__media"><img src="https://static.wixstatic.com/media/a5089d_09ee9e0418e74ae2a7a4e061ce0a567b~mv2.jpeg" alt="Trastornos del Impulso" loading="lazy"></div>
+        <h3>Trastornos del Impulso</h3>
+        <p>Intervención psicoterapéutica y conductual dirigida estratégicamente al control de la ira, la canalización de conductas de riesgo y el tratamiento de la Ludopatía o dependencias del comportamiento.</p>
+      </article>
+
+      <article class="card">
+        <div class="card__media"><img src="https://static.wixstatic.com/media/a5089d_31cf594ebf4b40d9ac705986c5701529~mv2.jpeg" alt="Desórdenes Alimentarios Asociados" loading="lazy"></div>
+        <h3>Desórdenes Alimentarios Asociados</h3>
+        <p>Acompañamiento clínico integral especializado en la restauración metabólica, nutricional y emocional de pacientes con manifestaciones de Bulimia y Anorexia derivadas de crisis afectivas.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- Modelo Clínico -->
+<section class="section" id="modelo-clinico">
+  <div class="container">
+    <span class="eyebrow">Modelo Clínico</span>
+    <h2>Modelo Clínico Integral: Cuerpo, Mente y Espíritu</h2>
+    <p class="section__lead">Priorizamos tu bienestar con planes personalizados y un equipo experto que garantiza seguridad, comodidad y apoyo integral constante.</p>
+
+    <div class="pillars">
+      <div class="pillar">
+        <div class="pillar__icon" aria-hidden="true">
+          <svg viewBox="0 0 48 48"><path d="M24 4c-6 0-9 5-9 10 0 4 2 7 4 9-6 2-11 8-11 17v4h32v-4c0-9-5-15-11-17 2-2 4-5 4-9 0-5-3-10-9-10z"/></svg>
+        </div>
+        <h3>Restauración Biológica <span>(Cuerpo)</span></h3>
+        <p>Al ingresar, el usuario recibe una intervención prioritaria por parte de nuestro Director General del Área Médica, el Dr. Diego Aguirre Zamudio (C.P. 14546256), quien emite el Certificado Médico de Ingreso, evalúa somatometría (peso y talla) e instaura un protocolo biológico de desintoxicación celular primaria. Mediante un complejo multivitamínico especializado, depuramos el tejido graso de las toxinas acumuladas, devolviendo el equilibrio metabólico general y reduciendo drásticamente el síndrome de abstinencia.</p>
+      </div>
+
+      <div class="pillar">
+        <div class="pillar__icon" aria-hidden="true">
+          <svg viewBox="0 0 48 48"><path d="M24 6a14 14 0 0 0-14 14c0 6 3 9 5 12 1 2 2 3 2 6h14c0-3 1-4 2-6 2-3 5-6 5-12A14 14 0 0 0 24 6z"/><line x1="19" y1="38" x2="29" y2="38"/><line x1="20" y1="42" x2="28" y2="42"/></svg>
+        </div>
+        <h3>Psicoterapia Científica Avanzada <span>(Mente)</span></h3>
+        <p>El área de psicología clínica realiza un psicodiagnóstico profundo utilizando herramientas estandarizadas e internacionales: el Inventario de Ansiedad y Depresión de Beck, el Tamizaje ASSIST de la Organización Mundial de la Salud (OMS), el Test Proyectivo HTP (Casa-Árbol-Persona) y la escala de inteligencia emocional TMMS-4. Con base en los resultados, se conduce un esquema de Terapia Cognitivo-Conductual y Terapia Gestalt individual (semanal) y grupal diaria, reforzado con talleres especializados de Tanatología para procesar duelos, pérdidas y rupturas emocionales.</p>
+      </div>
+
+      <div class="pillar">
+        <div class="pillar__icon" aria-hidden="true">
+          <svg viewBox="0 0 48 48"><path d="M24 4c0 8-8 8-8 16s8 8 8 16c0-8 8-8 8-16s-8-8-8-16z"/></svg>
+        </div>
+        <h3>Reconstrucción de Valores <span>(Espíritu)</span></h3>
+        <p>Reconstruimos el sentido de la vida mediante la meditación guiada, la introspección y la oración activa diaria. Nuestras instalaciones cuentan con una capilla institucional dedicada al recogimiento personal, promoviendo un despertar espiritual libre de dogmas que le permita al usuario reencontrar la paz interior y fortalecer su estructura moral para su correcta reinserción social.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Instalaciones -->
+<section class="section section--muted" id="instalaciones">
+  <div class="container">
+    <span class="eyebrow">Instalaciones</span>
+    <h2>El Entorno Ideal para el Reencuentro y la Salud</h2>
+    <p class="section__lead">Espacios diseñados para la restauración somática, la convivencia y la tranquilidad de nuestros usuarios.</p>
+
+    <div class="gallery">
+      <div class="gallery__item gallery__item--wide"><img src="https://static.wixstatic.com/media/a5089d_b009b3295fa44f02ba6ebbd85bfc74a7~mv2.jpeg" alt="Jardines y áreas comunes" loading="lazy"></div>
+      <div class="gallery__item"><img src="https://static.wixstatic.com/media/a5089d_ff01f63d0cee40938a02291a230e9764~mv2.jpeg" alt="Terraza y patio principal" loading="lazy"></div>
+      <div class="gallery__item"><img src="https://static.wixstatic.com/media/a5089d_daa8670e0f6b4b68975a66a71d85f65a~mv2.jpeg" alt="Fuente y jardín de meditación" loading="lazy"></div>
+      <div class="gallery__item"><img src="https://static.wixstatic.com/media/a5089d_254b447d03e545088106e6f680da32f6~mv2.jpeg" alt="Áreas verdes y descanso" loading="lazy"></div>
+      <div class="gallery__item"><img src="https://static.wixstatic.com/media/a5089d_a0195d5edb2249c0a20ab6efe9aecf67~mv2.jpeg" alt="Alberca terapéutica" loading="lazy"></div>
+      <div class="gallery__item gallery__item--wide"><img src="https://static.wixstatic.com/media/a5089d_e7ffa889002b4db9ad8d30a49bd3dfd4~mv2.jpeg" alt="Comedor y áreas comunes" loading="lazy"></div>
+    </div>
+  </div>
+</section>
+
+<!-- Garantía institucional -->
+<section class="section trust" id="garantia">
+  <div class="container trust__inner">
+    <div class="trust__text">
+      <span class="eyebrow eyebrow--light">Confianza</span>
+      <h2>Garantía Institucional, Transparencia y Accesibilidad Familiar</h2>
+    </div>
+    <div class="trust__items">
+      <div class="trust__item">
+        <strong>+20 años</strong>
+        <span>de trayectoria profesional devolviendo el equilibrio a las familias.</span>
+      </div>
+      <div class="trust__item">
+        <strong>Clínica autorizada</strong>
+        <span>y certificada con permisos vigentes en todo el Estado de Guanajuato.</span>
+      </div>
+      <div class="trust__item">
+        <strong>Responsable Sanitario</strong>
+        <span>Dr. Diego Aguirre Zamudio, C.P. 14546256.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contacto -->
+<section class="section" id="contacto">
+  <div class="container split split--reverse">
+    <div class="split__text">
+      <span class="eyebrow">Contacto</span>
+      <h2>Contáctanos</h2>
+      <p>Escríbenos y con gusto te orientaremos, con total discreción, sobre nuestro modelo clínico integral.</p>
+
+      <form class="form" id="contactForm" novalidate>
+        <div class="form__row">
+          <div class="form__field">
+            <label for="nombre">Nombre *</label>
+            <input type="text" id="nombre" name="nombre" required>
+          </div>
+          <div class="form__field">
+            <label for="apellido">Apellido *</label>
+            <input type="text" id="apellido" name="apellido" required>
+          </div>
+        </div>
+        <div class="form__field">
+          <label for="email">Email *</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+        <div class="form__field">
+          <label for="telefono">Teléfono</label>
+          <input type="tel" id="telefono" name="telefono">
+        </div>
+        <div class="form__field">
+          <label for="mensaje">Mensaje</label>
+          <textarea id="mensaje" name="mensaje" rows="4"></textarea>
+        </div>
+        <button type="submit" class="btn btn--primary">Enviar</button>
+        <p class="form__success" id="formSuccess" hidden>Gracias por escribirnos. Nuestro equipo se pondrá en contacto contigo a la brevedad.</p>
+      </form>
+    </div>
+    <div class="split__media split__media--card">
+      <img src="https://static.wixstatic.com/media/a5089d_fdb7def75f004a789b38f2565ebcf063~mv2.jpeg" alt="Clínica Hacienda Metamorfosis" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container footer__inner">
+    <div class="footer__brand">
+      <img src="https://static.wixstatic.com/media/a5089d_81248d043fa54625b45e295389122dd2~mv2.jpeg" alt="Clínica Hacienda Metamorfosis" class="footer__logo">
+      <p>Cuidando cada aspecto del bienestar humano — Cuerpo, Mente y Espíritu.</p>
+    </div>
+
+    <nav class="footer__nav">
+      <h4>Navegación</h4>
+      <a href="#nosotros">Nosotros</a>
+      <a href="#servicios">Servicios</a>
+      <a href="#modelo-clinico">Modelo Clínico</a>
+      <a href="#instalaciones">Instalaciones</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+
+    <div class="footer__contact">
+      <h4>Clínica Hacienda Metamorfosis</h4>
+      <p>Kilómetro 37.5 Carretera Federal Libre Celaya-Querétaro, Comunidad de La Purísima, Apaseo el Grande, Guanajuato.</p>
+      <p>Responsable Sanitario: Dr. Diego Aguirre Zamudio, C.P. 14546256</p>
+    </div>
+
+    <div class="footer__legal">
+      <h4>Legal</h4>
+      <a href="#">Aviso de Privacidad</a>
+      <a href="#">Aviso de Accesibilidad</a>
+    </div>
+  </div>
+  <div class="footer__bottom">
+    <p>&copy; 2026 Clínica Hacienda Metamorfosis. Todos los derechos reservados.</p>
+  </div>
+</footer>
+
+<a href="https://wa.me/524621858310?text=Hola%2C%20me%20gustar%C3%ADa%20recibir%20informaci%C3%B3n%20sobre%20Cl%C3%ADnica%20Hacienda%20Metamorfosis" class="whatsapp-float" target="_blank" rel="noopener" aria-label="Chatea con nosotros por WhatsApp">
+  <svg viewBox="0 0 32 32" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M16.004 3C9.377 3 4 8.377 4 15c0 2.2.59 4.27 1.62 6.05L4 29l8.15-2.14A11.9 11.9 0 0 0 16.004 27C22.63 27 28 21.62 28 15S22.63 3 16.004 3zm0 21.9c-1.87 0-3.63-.5-5.15-1.38l-.37-.22-4.84 1.27 1.29-4.72-.24-.38A9.83 9.83 0 0 1 6.1 15c0-5.46 4.45-9.9 9.9-9.9 5.46 0 9.9 4.44 9.9 9.9 0 5.46-4.44 9.9-9.9 9.9zm5.44-7.41c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.47-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.14-.14.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.61-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.06 2.88 1.21 3.08c.15.2 2.09 3.2 5.08 4.48.71.31 1.26.49 1.69.62.71.23 1.35.2 1.86.12.57-.08 1.76-.72 2.01-1.42.25-.7.25-1.3.17-1.42-.07-.12-.27-.2-.57-.35z"/></svg>
+</a>
+
+<a href="#inicio" class="back-to-top" id="backToTop" aria-label="Volver arriba">↑</a>
+
+<script>
+// Menú móvil
+const header = document.getElementById('header');
+const menuToggle = document.getElementById('menuToggle');
+const nav = document.getElementById('nav');
+
+menuToggle.addEventListener('click', () => {
+  header.classList.toggle('nav-open');
+});
+
+nav.querySelectorAll('a').forEach(link => {
+  link.addEventListener('click', () => header.classList.remove('nav-open'));
+});
+
+// Botón volver arriba
+const backToTop = document.getElementById('backToTop');
+window.addEventListener('scroll', () => {
+  backToTop.classList.toggle('visible', window.scrollY > 500);
+});
+
+// Formulario de contacto (sin backend: confirmación visual)
+const form = document.getElementById('contactForm');
+const formSuccess = document.getElementById('formSuccess');
+
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+  if (!form.checkValidity()) {
+    form.reportValidity();
+    return;
+  }
+  formSuccess.hidden = false;
+  form.reset();
+});
+</script>
+</body>
+</html>
