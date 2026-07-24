@@ -72,9 +72,9 @@ a{ color: inherit; text-decoration: none; }
 .eyebrow{
   display: inline-block;
   font-family: var(--font-head);
-  font-size: .78rem;
-  font-weight: 700;
-  letter-spacing: .12em;
+  font-size: 1.05rem;
+  font-weight: 800;
+  letter-spacing: .1em;
   text-transform: uppercase;
   color: var(--teal);
   margin-bottom: .6em;
@@ -328,70 +328,34 @@ a{ color: inherit; text-decoration: none; }
 }
 .pillar p{ font-size: 1.05rem; }
 
-/* ---------- Carousel (Instalaciones) ---------- */
-.carousel{
-  position: relative;
+/* ---------- Gallery (Instalaciones) ---------- */
+.gallery{
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 200px;
+  gap: 1rem;
   margin-top: 2.5rem;
 }
-.carousel__viewport{
-  overflow: hidden;
+.gallery__item{
   border-radius: var(--radius);
+  overflow: hidden;
   box-shadow: 0 6px 18px rgba(0,58,99,.08);
 }
-.carousel__track{
-  display: flex;
-  transition: transform .4s ease;
-}
-.carousel__slide{
-  flex: 0 0 100%;
-  aspect-ratio: 16/9;
-}
-.carousel__slide img{
+.gallery__item img{
   width: 100%; height: 100%;
   object-fit: cover;
+  transition: transform .35s ease;
 }
-.carousel__btn{
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 46px; height: 46px;
-  border-radius: 50%;
-  background: rgba(255,255,255,.92);
-  border: none;
-  box-shadow: var(--shadow);
-  font-size: 1.5rem;
-  line-height: 1;
-  color: var(--navy-2);
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 5;
-  transition: background .2s ease, color .2s ease;
+.gallery__item:hover img{ transform: scale(1.06); }
+.gallery__item--wide{ grid-column: span 2; }
+
+@media (max-width: 980px){
+  .gallery{ grid-template-columns: repeat(3, 1fr); grid-auto-rows: 170px; }
 }
-.carousel__btn:hover{ background: var(--teal); color: var(--white); }
-.carousel__btn--prev{ left: 1rem; }
-.carousel__btn--next{ right: 1rem; }
-.carousel__dots{
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: .5rem;
-  margin-top: 1.2rem;
-}
-.carousel__dot{
-  width: 10px; height: 10px;
-  border-radius: 50%;
-  background: var(--border);
-  border: none;
-  padding: 0;
-  cursor: pointer;
-}
-.carousel__dot.active{ background: var(--teal); }
 
 @media (max-width: 760px){
-  .carousel__btn{ width: 38px; height: 38px; font-size: 1.25rem; }
-  .carousel__slide{ aspect-ratio: 4/3; }
+  .gallery{ grid-template-columns: repeat(2, 1fr); grid-auto-rows: 150px; }
+  .gallery__item--wide{ grid-column: span 2; }
 }
 
 /* ---------- Trust / Garantía ---------- */
@@ -434,15 +398,30 @@ a{ color: inherit; text-decoration: none; }
   margin-top: 2rem;
 }
 .pilares-subtitle{ margin-top: 3rem; }
-.pilares-normativa{ margin-top: 1.5rem; }
+.pilares-normativa{
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.4rem;
+  margin-top: 1.5rem;
+}
+
+@media (max-width: 980px){
+  .pilares-normativa{ grid-template-columns: 1fr 1fr; }
+}
 
 @media (max-width: 760px){
   .pilares-grid{ grid-template-columns: 1fr; }
+  .pilares-normativa{ grid-template-columns: 1fr; }
 }
 
 /* ---------- Address card (Contacto) ---------- */
 .address-card{ margin-top: 1.5rem; }
-.address-card .btn{ margin-top: .5rem; }
+.address-card__actions{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: .8rem;
+  margin-top: .5rem;
+}
 
 /* ---------- Footer ---------- */
 .footer{
@@ -774,7 +753,7 @@ a{ color: inherit; text-decoration: none; }
         <div class="pillar__icon" aria-hidden="true">
           <svg viewBox="0 0 48 48"><path d="M24 6a14 14 0 0 0-14 14c0 6 3 9 5 12 1 2 2 3 2 6h14c0-3 1-4 2-6 2-3 5-6 5-12A14 14 0 0 0 24 6z"/><line x1="19" y1="38" x2="29" y2="38"/><line x1="20" y1="42" x2="28" y2="42"/></svg>
         </div>
-        <h3>Psicoterapia Científica <span>(Mente)</span></h3>
+        <h3>Psicología Activa <span>(Mente)</span></h3>
         <p>El área de psicología clínica realiza un psicodiagnóstico profundo utilizando herramientas estandarizadas e internacionales: el Inventario de Ansiedad y Depresión de Beck, el Tamizaje ASSIST de la Organización Mundial de la Salud (OMS), el Test Proyectivo HTP (Casa-Árbol-Persona) y la escala de inteligencia emocional TMMS-4. Con base en los resultados, se conduce un esquema de Terapia Cognitivo-Conductual y Terapia Gestalt individual (semanal) y grupal diaria, reforzado con talleres especializados de Tanatología para procesar duelos, pérdidas y rupturas emocionales.</p>
       </div>
 
@@ -842,28 +821,21 @@ a{ color: inherit; text-decoration: none; }
     <h2>El Entorno Ideal para el Reencuentro y la Salud</h2>
     <p class="section__lead">Espacios diseñados para la restauración somática, la convivencia y la tranquilidad de nuestros usuarios.</p>
 
-    <div class="carousel" id="carousel">
-      <div class="carousel__viewport">
-        <div class="carousel__track" id="carouselTrack">
-          <div class="carousel__slide"><img src="https://static.wixstatic.com/media/a5089d_b009b3295fa44f02ba6ebbd85bfc74a7~mv2.jpeg" alt="Jardines y áreas comunes" loading="lazy"></div>
-          <div class="carousel__slide"><img src="https://static.wixstatic.com/media/a5089d_ff01f63d0cee40938a02291a230e9764~mv2.jpeg" alt="Terraza y patio principal" loading="lazy"></div>
-          <div class="carousel__slide"><img src="https://static.wixstatic.com/media/a5089d_daa8670e0f6b4b68975a66a71d85f65a~mv2.jpeg" alt="Fuente y jardín de meditación" loading="lazy"></div>
-          <div class="carousel__slide"><img src="https://static.wixstatic.com/media/a5089d_254b447d03e545088106e6f680da32f6~mv2.jpeg" alt="Áreas verdes y descanso" loading="lazy"></div>
-          <div class="carousel__slide"><img src="https://static.wixstatic.com/media/a5089d_a0195d5edb2249c0a20ab6efe9aecf67~mv2.jpeg" alt="Alberca terapéutica" loading="lazy"></div>
-          <div class="carousel__slide"><img src="https://static.wixstatic.com/media/a5089d_e7ffa889002b4db9ad8d30a49bd3dfd4~mv2.jpeg" alt="Comedor y áreas comunes" loading="lazy"></div>
-          <div class="carousel__slide"><img src="https://static.wixstatic.com/media/a5089d_7cd3b291c5404058b03bf5a653ec03af~mv2.jpeg" alt="Terraza con sala de estar exterior" loading="lazy"></div>
-          <div class="carousel__slide"><img src="https://static.wixstatic.com/media/a5089d_b5814a61cb804597bd6e02cea6d1df72~mv2.jpeg" alt="Patio principal y corredor de arcos" loading="lazy"></div>
-          <div class="carousel__slide"><img src="https://static.wixstatic.com/media/a5089d_6de905a858aa413eb892aa5e41c476f1~mv2.jpeg" alt="Oficina administrativa" loading="lazy"></div>
-          <div class="carousel__slide"><img src="https://static.wixstatic.com/media/a5089d_c7f776454b0746fc8a924e22dc836477~mv2.jpeg" alt="Sala de recepción" loading="lazy"></div>
-          <div class="carousel__slide"><img src="https://static.wixstatic.com/media/a5089d_96deef07648841e6b239c1341ed7be3c~mv2.jpeg" alt="Sala de estar" loading="lazy"></div>
-          <div class="carousel__slide"><img src="https://static.wixstatic.com/media/a5089d_45ff26dbf12d4341991e10aa3dfcb91a~mv2.jpeg" alt="Cocina y comedor de personal" loading="lazy"></div>
-          <div class="carousel__slide"><img src="https://static.wixstatic.com/media/a5089d_604f1bc589ce45698c3c03c5e1899d41~mv2.jpeg" alt="Sanitarios" loading="lazy"></div>
-          <div class="carousel__slide"><img src="https://static.wixstatic.com/media/a5089d_8e89d087ef6c47f4b1613cbe3914100f~mv2.jpeg" alt="Jardín trasero" loading="lazy"></div>
-        </div>
-      </div>
-      <button class="carousel__btn carousel__btn--prev" id="carouselPrev" aria-label="Imagen anterior">‹</button>
-      <button class="carousel__btn carousel__btn--next" id="carouselNext" aria-label="Imagen siguiente">›</button>
-      <div class="carousel__dots" id="carouselDots"></div>
+    <div class="gallery">
+      <div class="gallery__item gallery__item--wide"><img src="https://static.wixstatic.com/media/a5089d_b009b3295fa44f02ba6ebbd85bfc74a7~mv2.jpeg" alt="Jardines y áreas comunes" loading="lazy"></div>
+      <div class="gallery__item"><img src="https://static.wixstatic.com/media/a5089d_ff01f63d0cee40938a02291a230e9764~mv2.jpeg" alt="Terraza y patio principal" loading="lazy"></div>
+      <div class="gallery__item"><img src="https://static.wixstatic.com/media/a5089d_daa8670e0f6b4b68975a66a71d85f65a~mv2.jpeg" alt="Fuente y jardín de meditación" loading="lazy"></div>
+      <div class="gallery__item"><img src="https://static.wixstatic.com/media/a5089d_254b447d03e545088106e6f680da32f6~mv2.jpeg" alt="Áreas verdes y descanso" loading="lazy"></div>
+      <div class="gallery__item"><img src="https://static.wixstatic.com/media/a5089d_a0195d5edb2249c0a20ab6efe9aecf67~mv2.jpeg" alt="Alberca terapéutica" loading="lazy"></div>
+      <div class="gallery__item gallery__item--wide"><img src="https://static.wixstatic.com/media/a5089d_e7ffa889002b4db9ad8d30a49bd3dfd4~mv2.jpeg" alt="Comedor y áreas comunes" loading="lazy"></div>
+      <div class="gallery__item"><img src="https://static.wixstatic.com/media/a5089d_7cd3b291c5404058b03bf5a653ec03af~mv2.jpeg" alt="Terraza con sala de estar exterior" loading="lazy"></div>
+      <div class="gallery__item"><img src="https://static.wixstatic.com/media/a5089d_b5814a61cb804597bd6e02cea6d1df72~mv2.jpeg" alt="Patio principal y corredor de arcos" loading="lazy"></div>
+      <div class="gallery__item"><img src="https://static.wixstatic.com/media/a5089d_6de905a858aa413eb892aa5e41c476f1~mv2.jpeg" alt="Oficina administrativa" loading="lazy"></div>
+      <div class="gallery__item gallery__item--wide"><img src="https://static.wixstatic.com/media/a5089d_c7f776454b0746fc8a924e22dc836477~mv2.jpeg" alt="Sala de recepción" loading="lazy"></div>
+      <div class="gallery__item"><img src="https://static.wixstatic.com/media/a5089d_96deef07648841e6b239c1341ed7be3c~mv2.jpeg" alt="Sala de estar" loading="lazy"></div>
+      <div class="gallery__item"><img src="https://static.wixstatic.com/media/a5089d_45ff26dbf12d4341991e10aa3dfcb91a~mv2.jpeg" alt="Cocina y comedor de personal" loading="lazy"></div>
+      <div class="gallery__item"><img src="https://static.wixstatic.com/media/a5089d_604f1bc589ce45698c3c03c5e1899d41~mv2.jpeg" alt="Sanitarios" loading="lazy"></div>
+      <div class="gallery__item gallery__item--wide"><img src="https://static.wixstatic.com/media/a5089d_8e89d087ef6c47f4b1613cbe3914100f~mv2.jpeg" alt="Jardín trasero" loading="lazy"></div>
     </div>
   </div>
 </section>
@@ -902,7 +874,10 @@ a{ color: inherit; text-decoration: none; }
 
       <div class="address-card">
         <p><strong>Clínica Hacienda Metamorfosis</strong><br>Kilómetro 37.5 Carretera Federal Libre Celaya-Querétaro, Comunidad de La Purísima, Apaseo el Grande, Guanajuato.</p>
-        <a href="https://www.google.com/maps/place/Cl%C3%ADnica+Hacienda+Metamorfosis+Centro+de+Rehabilitaci%C3%B3n+en+Adicciones/@20.517235,-100.6837095,800m/data=!3m2!1e3!4b1!4m6!3m5!1s0x842cb302518a3c13:0x49a3db09012356ef!8m2!3d20.517235!4d-100.6811346!16s%2Fg%2F11x8xb7_3k?entry=ttu&g_ep=EgoyMDI2MDcyMi4wIKXMDSoASAFQAw%3D%3D" target="_top" rel="noopener" class="btn btn--primary">Ver ubicación en Google Maps</a>
+        <div class="address-card__actions">
+          <a href="https://www.google.com/maps/place/Cl%C3%ADnica+Hacienda+Metamorfosis+Centro+de+Rehabilitaci%C3%B3n+en+Adicciones/@20.517235,-100.6837095,800m/data=!3m2!1e3!4b1!4m6!3m5!1s0x842cb302518a3c13:0x49a3db09012356ef!8m2!3d20.517235!4d-100.6811346!16s%2Fg%2F11x8xb7_3k?entry=ttu&g_ep=EgoyMDI2MDcyMi4wIKXMDSoASAFQAw%3D%3D" target="_top" rel="noopener" class="btn btn--primary">Ver ubicación en Google Maps</a>
+          <a href="https://wa.me/5214621858310?text=%C2%A1Hola!%20%C2%BFc%C3%B3mo%20podemos%20ayudarte%3F" target="_top" rel="noopener" class="btn btn--primary">Escríbenos por WhatsApp</a>
+        </div>
       </div>
     </div>
     <div class="split__media split__media--card">
@@ -1002,49 +977,6 @@ const backToTop = document.getElementById('backToTop');
 window.addEventListener('scroll', () => {
   backToTop.classList.toggle('visible', window.scrollY > 500);
 });
-
-// Carrusel de instalaciones
-const track = document.getElementById('carouselTrack');
-const slides = Array.from(track.children);
-const dotsWrap = document.getElementById('carouselDots');
-let slideIndex = 0;
-
-slides.forEach((_, i) => {
-  const dot = document.createElement('button');
-  dot.className = 'carousel__dot' + (i === 0 ? ' active' : '');
-  dot.setAttribute('aria-label', 'Ir a la imagen ' + (i + 1));
-  dot.addEventListener('click', () => goToSlide(i));
-  dotsWrap.appendChild(dot);
-});
-
-function updateCarousel() {
-  track.style.transform = `translateX(-${slideIndex * 100}%)`;
-  Array.from(dotsWrap.children).forEach((dot, i) => dot.classList.toggle('active', i === slideIndex));
-}
-
-function goToSlide(i) {
-  slideIndex = (i + slides.length) % slides.length;
-  updateCarousel();
-}
-
-document.getElementById('carouselPrev').addEventListener('click', () => goToSlide(slideIndex - 1));
-document.getElementById('carouselNext').addEventListener('click', () => goToSlide(slideIndex + 1));
-
-let touchStartX = 0;
-let touchStartY = 0;
-track.addEventListener('touchstart', (e) => {
-  touchStartX = e.touches[0].clientX;
-  touchStartY = e.touches[0].clientY;
-}, { passive: true });
-track.addEventListener('touchend', (e) => {
-  const deltaX = e.changedTouches[0].clientX - touchStartX;
-  const deltaY = e.changedTouches[0].clientY - touchStartY;
-  if (Math.abs(deltaX) > 40 && Math.abs(deltaX) > Math.abs(deltaY)) {
-    goToSlide(deltaX < 0 ? slideIndex + 1 : slideIndex - 1);
-  }
-}, { passive: true });
-
-updateCarousel();
 
 // Modal Aviso de Privacidad
 const privacyModal = document.getElementById('privacyModal');
