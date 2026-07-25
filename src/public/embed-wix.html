@@ -347,7 +347,6 @@ a{ color: inherit; text-decoration: none; }
   transition: transform .35s ease;
 }
 .gallery__item:hover img{ transform: scale(1.06); }
-.gallery__item--wide{ grid-column: span 2; }
 
 @media (max-width: 980px){
   .gallery{ grid-template-columns: repeat(3, 1fr); grid-auto-rows: 170px; }
@@ -355,7 +354,6 @@ a{ color: inherit; text-decoration: none; }
 
 @media (max-width: 760px){
   .gallery{ grid-template-columns: repeat(2, 1fr); grid-auto-rows: 150px; }
-  .gallery__item--wide{ grid-column: span 2; }
 }
 
 /* ---------- Trust / Garantía ---------- */
@@ -418,10 +416,11 @@ a{ color: inherit; text-decoration: none; }
 .address-card__actions{
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: stretch;
   gap: .8rem;
   margin-top: .5rem;
 }
+.address-card__actions .btn{ text-align: center; }
 
 /* ---------- Footer ---------- */
 .footer{
@@ -822,20 +821,20 @@ a{ color: inherit; text-decoration: none; }
     <p class="section__lead">Espacios diseñados para la restauración somática, la convivencia y la tranquilidad de nuestros usuarios.</p>
 
     <div class="gallery">
-      <div class="gallery__item gallery__item--wide"><img src="https://static.wixstatic.com/media/a5089d_b009b3295fa44f02ba6ebbd85bfc74a7~mv2.jpeg" alt="Jardines y áreas comunes" loading="lazy"></div>
+      <div class="gallery__item"><img src="https://static.wixstatic.com/media/a5089d_b009b3295fa44f02ba6ebbd85bfc74a7~mv2.jpeg" alt="Jardines y áreas comunes" loading="lazy"></div>
       <div class="gallery__item"><img src="https://static.wixstatic.com/media/a5089d_ff01f63d0cee40938a02291a230e9764~mv2.jpeg" alt="Terraza y patio principal" loading="lazy"></div>
       <div class="gallery__item"><img src="https://static.wixstatic.com/media/a5089d_daa8670e0f6b4b68975a66a71d85f65a~mv2.jpeg" alt="Fuente y jardín de meditación" loading="lazy"></div>
       <div class="gallery__item"><img src="https://static.wixstatic.com/media/a5089d_254b447d03e545088106e6f680da32f6~mv2.jpeg" alt="Áreas verdes y descanso" loading="lazy"></div>
       <div class="gallery__item"><img src="https://static.wixstatic.com/media/a5089d_a0195d5edb2249c0a20ab6efe9aecf67~mv2.jpeg" alt="Alberca terapéutica" loading="lazy"></div>
-      <div class="gallery__item gallery__item--wide"><img src="https://static.wixstatic.com/media/a5089d_e7ffa889002b4db9ad8d30a49bd3dfd4~mv2.jpeg" alt="Comedor y áreas comunes" loading="lazy"></div>
+      <div class="gallery__item"><img src="https://static.wixstatic.com/media/a5089d_e7ffa889002b4db9ad8d30a49bd3dfd4~mv2.jpeg" alt="Comedor y áreas comunes" loading="lazy"></div>
       <div class="gallery__item"><img src="https://static.wixstatic.com/media/a5089d_7cd3b291c5404058b03bf5a653ec03af~mv2.jpeg" alt="Terraza con sala de estar exterior" loading="lazy"></div>
       <div class="gallery__item"><img src="https://static.wixstatic.com/media/a5089d_b5814a61cb804597bd6e02cea6d1df72~mv2.jpeg" alt="Patio principal y corredor de arcos" loading="lazy"></div>
       <div class="gallery__item"><img src="https://static.wixstatic.com/media/a5089d_6de905a858aa413eb892aa5e41c476f1~mv2.jpeg" alt="Oficina administrativa" loading="lazy"></div>
-      <div class="gallery__item gallery__item--wide"><img src="https://static.wixstatic.com/media/a5089d_c7f776454b0746fc8a924e22dc836477~mv2.jpeg" alt="Sala de recepción" loading="lazy"></div>
+      <div class="gallery__item"><img src="https://static.wixstatic.com/media/a5089d_c7f776454b0746fc8a924e22dc836477~mv2.jpeg" alt="Sala de recepción" loading="lazy"></div>
       <div class="gallery__item"><img src="https://static.wixstatic.com/media/a5089d_96deef07648841e6b239c1341ed7be3c~mv2.jpeg" alt="Sala de estar" loading="lazy"></div>
       <div class="gallery__item"><img src="https://static.wixstatic.com/media/a5089d_45ff26dbf12d4341991e10aa3dfcb91a~mv2.jpeg" alt="Cocina y comedor de personal" loading="lazy"></div>
       <div class="gallery__item"><img src="https://static.wixstatic.com/media/a5089d_604f1bc589ce45698c3c03c5e1899d41~mv2.jpeg" alt="Sanitarios" loading="lazy"></div>
-      <div class="gallery__item gallery__item--wide"><img src="https://static.wixstatic.com/media/a5089d_8e89d087ef6c47f4b1613cbe3914100f~mv2.jpeg" alt="Jardín trasero" loading="lazy"></div>
+      <div class="gallery__item"><img src="https://static.wixstatic.com/media/a5089d_8e89d087ef6c47f4b1613cbe3914100f~mv2.jpeg" alt="Jardín trasero" loading="lazy"></div>
     </div>
   </div>
 </section>
