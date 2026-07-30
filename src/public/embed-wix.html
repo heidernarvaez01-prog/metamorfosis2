@@ -328,32 +328,76 @@ a{ color: inherit; text-decoration: none; }
 }
 .pillar p{ font-size: 1.05rem; }
 
-/* ---------- Gallery (Instalaciones) ---------- */
-.gallery{
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-auto-rows: 200px;
-  gap: 1rem;
-  margin-top: 2.5rem;
-}
-.gallery__item{
+/* ---------- Showcase carousel (Instalaciones) ---------- */
+.showcase{ margin-top: 2.5rem; }
+.showcase__stage{
+  position: relative;
   border-radius: var(--radius);
   overflow: hidden;
-  box-shadow: 0 6px 18px rgba(0,58,99,.08);
+  box-shadow: 0 14px 34px rgba(0,58,99,.18);
+  aspect-ratio: 16/9;
+  background: var(--gray-bg);
 }
-.gallery__item img{
+.showcase__stage img{
   width: 100%; height: 100%;
   object-fit: cover;
-  transition: transform .35s ease;
+  display: block;
+  animation: showcaseFade .35s ease;
 }
-.gallery__item:hover img{ transform: scale(1.06); }
+@keyframes showcaseFade{
+  from{ opacity: 0; transform: scale(1.02); }
+  to{ opacity: 1; transform: scale(1); }
+}
+.showcase__nav{
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 48px; height: 48px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.92);
+  border: none;
+  box-shadow: var(--shadow);
+  font-size: 1.6rem;
+  line-height: 1;
+  color: var(--navy-2);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
+  transition: background .2s ease, color .2s ease;
+}
+.showcase__nav:hover{ background: var(--teal); color: var(--white); }
+.showcase__nav--prev{ left: 1rem; }
+.showcase__nav--next{ right: 1rem; }
 
-@media (max-width: 980px){
-  .gallery{ grid-template-columns: repeat(3, 1fr); grid-auto-rows: 170px; }
+.showcase__thumbs{
+  display: flex;
+  gap: .7rem;
+  margin-top: 1rem;
+  overflow-x: auto;
+  padding-bottom: .4rem;
+  scroll-behavior: smooth;
 }
+.showcase__thumb{
+  flex: 0 0 auto;
+  width: 96px; height: 72px;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 3px solid transparent;
+  padding: 0;
+  cursor: pointer;
+  opacity: .6;
+  transition: opacity .2s ease, border-color .2s ease;
+}
+.showcase__thumb img{ width: 100%; height: 100%; object-fit: cover; display: block; }
+.showcase__thumb:hover{ opacity: .9; }
+.showcase__thumb.active{ border-color: var(--teal); opacity: 1; }
 
 @media (max-width: 760px){
-  .gallery{ grid-template-columns: repeat(2, 1fr); grid-auto-rows: 150px; }
+  .showcase__stage{ aspect-ratio: 4/3; }
+  .showcase__nav{ width: 40px; height: 40px; font-size: 1.3rem; }
+  .showcase__thumb{ width: 76px; height: 58px; }
 }
 
 /* ---------- Trust / Garantía ---------- */
@@ -413,12 +457,19 @@ a{ color: inherit; text-decoration: none; }
 
 /* ---------- Address card (Contacto) ---------- */
 .address-card{ margin-top: 1.5rem; }
+.map-embed{
+  margin-top: 1.2rem;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: 0 6px 18px rgba(0,58,99,.08);
+}
+.map-embed iframe{ display: block; width: 100%; height: 280px; border: 0; }
 .address-card__actions{
   display: flex;
   flex-direction: column;
   align-items: stretch;
   gap: .8rem;
-  margin-top: .5rem;
+  margin-top: 1.2rem;
 }
 .address-card__actions .btn{ text-align: center; }
 
@@ -820,21 +871,28 @@ a{ color: inherit; text-decoration: none; }
     <h2>El Entorno Ideal para el Reencuentro y la Salud</h2>
     <p class="section__lead">Espacios diseñados para la restauración somática, la convivencia y la tranquilidad de nuestros usuarios.</p>
 
-    <div class="gallery">
-      <div class="gallery__item"><img src="https://static.wixstatic.com/media/a5089d_b009b3295fa44f02ba6ebbd85bfc74a7~mv2.jpeg" alt="Jardines y áreas comunes" loading="lazy"></div>
-      <div class="gallery__item"><img src="https://static.wixstatic.com/media/a5089d_ff01f63d0cee40938a02291a230e9764~mv2.jpeg" alt="Terraza y patio principal" loading="lazy"></div>
-      <div class="gallery__item"><img src="https://static.wixstatic.com/media/a5089d_daa8670e0f6b4b68975a66a71d85f65a~mv2.jpeg" alt="Fuente y jardín de meditación" loading="lazy"></div>
-      <div class="gallery__item"><img src="https://static.wixstatic.com/media/a5089d_254b447d03e545088106e6f680da32f6~mv2.jpeg" alt="Áreas verdes y descanso" loading="lazy"></div>
-      <div class="gallery__item"><img src="https://static.wixstatic.com/media/a5089d_a0195d5edb2249c0a20ab6efe9aecf67~mv2.jpeg" alt="Alberca terapéutica" loading="lazy"></div>
-      <div class="gallery__item"><img src="https://static.wixstatic.com/media/a5089d_e7ffa889002b4db9ad8d30a49bd3dfd4~mv2.jpeg" alt="Comedor y áreas comunes" loading="lazy"></div>
-      <div class="gallery__item"><img src="https://static.wixstatic.com/media/a5089d_7cd3b291c5404058b03bf5a653ec03af~mv2.jpeg" alt="Terraza con sala de estar exterior" loading="lazy"></div>
-      <div class="gallery__item"><img src="https://static.wixstatic.com/media/a5089d_b5814a61cb804597bd6e02cea6d1df72~mv2.jpeg" alt="Patio principal y corredor de arcos" loading="lazy"></div>
-      <div class="gallery__item"><img src="https://static.wixstatic.com/media/a5089d_6de905a858aa413eb892aa5e41c476f1~mv2.jpeg" alt="Oficina administrativa" loading="lazy"></div>
-      <div class="gallery__item"><img src="https://static.wixstatic.com/media/a5089d_c7f776454b0746fc8a924e22dc836477~mv2.jpeg" alt="Sala de recepción" loading="lazy"></div>
-      <div class="gallery__item"><img src="https://static.wixstatic.com/media/a5089d_96deef07648841e6b239c1341ed7be3c~mv2.jpeg" alt="Sala de estar" loading="lazy"></div>
-      <div class="gallery__item"><img src="https://static.wixstatic.com/media/a5089d_45ff26dbf12d4341991e10aa3dfcb91a~mv2.jpeg" alt="Cocina y comedor de personal" loading="lazy"></div>
-      <div class="gallery__item"><img src="https://static.wixstatic.com/media/a5089d_604f1bc589ce45698c3c03c5e1899d41~mv2.jpeg" alt="Sanitarios" loading="lazy"></div>
-      <div class="gallery__item"><img src="https://static.wixstatic.com/media/a5089d_8e89d087ef6c47f4b1613cbe3914100f~mv2.jpeg" alt="Jardín trasero" loading="lazy"></div>
+    <div class="showcase" id="showcase">
+      <div class="showcase__stage">
+        <button class="showcase__nav showcase__nav--prev" id="showcasePrev" aria-label="Imagen anterior">‹</button>
+        <img id="showcaseMain" src="https://static.wixstatic.com/media/a5089d_b009b3295fa44f02ba6ebbd85bfc74a7~mv2.jpeg" alt="Jardines y áreas comunes">
+        <button class="showcase__nav showcase__nav--next" id="showcaseNext" aria-label="Imagen siguiente">›</button>
+      </div>
+      <div class="showcase__thumbs" id="showcaseThumbs">
+        <button class="showcase__thumb active" aria-label="Ver imagen 1"><img src="https://static.wixstatic.com/media/a5089d_b009b3295fa44f02ba6ebbd85bfc74a7~mv2.jpeg" alt="Jardines y áreas comunes" loading="lazy"></button>
+        <button class="showcase__thumb" aria-label="Ver imagen 2"><img src="https://static.wixstatic.com/media/a5089d_ff01f63d0cee40938a02291a230e9764~mv2.jpeg" alt="Terraza y patio principal" loading="lazy"></button>
+        <button class="showcase__thumb" aria-label="Ver imagen 3"><img src="https://static.wixstatic.com/media/a5089d_daa8670e0f6b4b68975a66a71d85f65a~mv2.jpeg" alt="Fuente y jardín de meditación" loading="lazy"></button>
+        <button class="showcase__thumb" aria-label="Ver imagen 4"><img src="https://static.wixstatic.com/media/a5089d_254b447d03e545088106e6f680da32f6~mv2.jpeg" alt="Áreas verdes y descanso" loading="lazy"></button>
+        <button class="showcase__thumb" aria-label="Ver imagen 5"><img src="https://static.wixstatic.com/media/a5089d_a0195d5edb2249c0a20ab6efe9aecf67~mv2.jpeg" alt="Alberca terapéutica" loading="lazy"></button>
+        <button class="showcase__thumb" aria-label="Ver imagen 6"><img src="https://static.wixstatic.com/media/a5089d_e7ffa889002b4db9ad8d30a49bd3dfd4~mv2.jpeg" alt="Comedor y áreas comunes" loading="lazy"></button>
+        <button class="showcase__thumb" aria-label="Ver imagen 7"><img src="https://static.wixstatic.com/media/a5089d_7cd3b291c5404058b03bf5a653ec03af~mv2.jpeg" alt="Terraza con sala de estar exterior" loading="lazy"></button>
+        <button class="showcase__thumb" aria-label="Ver imagen 8"><img src="https://static.wixstatic.com/media/a5089d_b5814a61cb804597bd6e02cea6d1df72~mv2.jpeg" alt="Patio principal y corredor de arcos" loading="lazy"></button>
+        <button class="showcase__thumb" aria-label="Ver imagen 9"><img src="https://static.wixstatic.com/media/a5089d_6de905a858aa413eb892aa5e41c476f1~mv2.jpeg" alt="Oficina administrativa" loading="lazy"></button>
+        <button class="showcase__thumb" aria-label="Ver imagen 10"><img src="https://static.wixstatic.com/media/a5089d_c7f776454b0746fc8a924e22dc836477~mv2.jpeg" alt="Sala de recepción" loading="lazy"></button>
+        <button class="showcase__thumb" aria-label="Ver imagen 11"><img src="https://static.wixstatic.com/media/a5089d_96deef07648841e6b239c1341ed7be3c~mv2.jpeg" alt="Sala de estar" loading="lazy"></button>
+        <button class="showcase__thumb" aria-label="Ver imagen 12"><img src="https://static.wixstatic.com/media/a5089d_45ff26dbf12d4341991e10aa3dfcb91a~mv2.jpeg" alt="Cocina y comedor de personal" loading="lazy"></button>
+        <button class="showcase__thumb" aria-label="Ver imagen 13"><img src="https://static.wixstatic.com/media/a5089d_604f1bc589ce45698c3c03c5e1899d41~mv2.jpeg" alt="Sanitarios" loading="lazy"></button>
+        <button class="showcase__thumb" aria-label="Ver imagen 14"><img src="https://static.wixstatic.com/media/a5089d_8e89d087ef6c47f4b1613cbe3914100f~mv2.jpeg" alt="Jardín trasero" loading="lazy"></button>
+      </div>
     </div>
   </div>
 </section>
@@ -873,8 +931,10 @@ a{ color: inherit; text-decoration: none; }
 
       <div class="address-card">
         <p><strong>Clínica Hacienda Metamorfosis</strong><br>Kilómetro 37.5 Carretera Federal Libre Celaya-Querétaro, Comunidad de La Purísima, Apaseo el Grande, Guanajuato.</p>
+        <div class="map-embed">
+          <iframe src="https://www.google.com/maps?q=20.517235,-100.6811346&z=16&output=embed" width="100%" height="280" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Ubicación de Clínica Hacienda Metamorfosis"></iframe>
+        </div>
         <div class="address-card__actions">
-          <a href="https://www.google.com/maps/place/Cl%C3%ADnica+Hacienda+Metamorfosis+Centro+de+Rehabilitaci%C3%B3n+en+Adicciones/@20.517235,-100.6837095,800m/data=!3m2!1e3!4b1!4m6!3m5!1s0x842cb302518a3c13:0x49a3db09012356ef!8m2!3d20.517235!4d-100.6811346!16s%2Fg%2F11x8xb7_3k?entry=ttu&g_ep=EgoyMDI2MDcyMi4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener" class="btn btn--primary" data-open-link>Ver ubicación en Google Maps</a>
           <a href="https://wa.me/5214611858310?text=%C2%A1Hola!%20%C2%BFc%C3%B3mo%20podemos%20ayudarte%3F" target="_blank" rel="noopener" class="btn btn--primary" data-open-link>Escríbenos por WhatsApp</a>
         </div>
       </div>
@@ -976,6 +1036,24 @@ const backToTop = document.getElementById('backToTop');
 window.addEventListener('scroll', () => {
   backToTop.classList.toggle('visible', window.scrollY > 500);
 });
+
+// Carrusel de Instalaciones (foto grande + miniaturas)
+const showcaseMain = document.getElementById('showcaseMain');
+const showcaseThumbs = Array.from(document.querySelectorAll('.showcase__thumb'));
+let showcaseIndex = 0;
+
+function setShowcase(i) {
+  showcaseIndex = (i + showcaseThumbs.length) % showcaseThumbs.length;
+  const thumbImg = showcaseThumbs[showcaseIndex].querySelector('img');
+  showcaseMain.src = thumbImg.src;
+  showcaseMain.alt = thumbImg.alt;
+  showcaseThumbs.forEach((t, idx) => t.classList.toggle('active', idx === showcaseIndex));
+  showcaseThumbs[showcaseIndex].scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+}
+
+showcaseThumbs.forEach((t, idx) => t.addEventListener('click', () => setShowcase(idx)));
+document.getElementById('showcasePrev').addEventListener('click', () => setShowcase(showcaseIndex - 1));
+document.getElementById('showcaseNext').addEventListener('click', () => setShowcase(showcaseIndex + 1));
 
 // Links externos (WhatsApp / Maps): fuerza window.open explícito,
 // con respaldo a navegación normal si el navegador lo bloquea.
